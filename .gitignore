@@ -1,7 +1,9 @@
+target/*
 .classpath
 .project
 .settings
 .idea/*
+*.iws
 *.iml
-target/*
-
+*.ipr
+test/resources/apps/*
