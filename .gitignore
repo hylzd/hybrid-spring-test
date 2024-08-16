@@ -6,4 +6,4 @@ target/*
 *.iws
 *.iml
 *.ipr
-test/resources/apps/*
+src/test/resources/apps/*
