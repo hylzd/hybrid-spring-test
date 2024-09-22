@@ -10,16 +10,16 @@
 	</parent>
 
 	<groupId>com.common</groupId>
-	<artifactId>bdd</artifactId>
+	<artifactId>auto-test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>bdd-spring-test</name>
+	<name>hybrid-spring-test</name>
 	<description>automation framework using spring boot</description>
 
 	<properties>
 		<java.version>17</java.version>
 		<selenium.java.version>4.23.0</selenium.java.version>
-		<webdriver.manager.version>5.9.1</webdriver.manager.version>
+		<webdriver.manager.version>5.9.2</webdriver.manager.version>
 		<testNG.version>7.10.2</testNG.version>
 		<allure.version>2.29.0</allure.version>
 		<allure.maven.version>2.13.0</allure.maven.version>
@@ -27,6 +27,8 @@
 		<aspectj.version>1.9.22</aspectj.version>
 		<cucumber.version>7.18.1</cucumber.version>
 		<java.client.version>9.3.0</java.client.version>
+		<lombok.version>1.18.34</lombok.version>
+		<extentReport.version>5.1.2</extentReport.version>
 		<compiler.plugin.version>3.13.0</compiler.plugin.version>
 		<suiteXmlFile>src/test/resources/suites.xml</suiteXmlFile>
 	</properties>
@@ -36,14 +38,22 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
@@ -70,26 +80,22 @@
 			<artifactId>cucumber-java</artifactId>
 			<version>${cucumber.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-spring</artifactId>
 			<version>${cucumber.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-testng</artifactId>
 			<version>${cucumber.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit</artifactId>
 			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit-platform-engine</artifactId>
@@ -123,21 +129,24 @@
 			<groupId>io.appium</groupId>
 			<artifactId>java-client</artifactId>
 			<version>${java.client.version}</version>
-			<scope>test</scope>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- extent reporter -->
 		<dependency>
-			<groupId>io.appium</groupId>
-			<artifactId>java-client</artifactId>
-			<version>9.3.0</version>
-			<scope>compile</scope>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>${extentReport.version}</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -176,6 +185,7 @@
 					</suiteXmlFiles>
 					<argLine>
 						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+						-Dfile.encoding=UTF-8
 					</argLine>
 				</configuration>
 				<dependencies>

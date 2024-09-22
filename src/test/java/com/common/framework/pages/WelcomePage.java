@@ -1,35 +1,44 @@
 package com.common.framework.pages;
 
-import com.common.framework.common.BasePage;
-import lombok.AllArgsConstructor;
-import org.openqa.selenium.By;
+import com.common.framework.common.BaseWebPage;
+import io.qameta.allure.Step;
+import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
-@AllArgsConstructor
-public class WelcomePage extends BasePage {
+public class WelcomePage extends BaseWebPage {
 
-    private static By acceptBtn = By.id("onetrust-accept-btn-handler");
-    private static By homeLogo = By.className("site-branding__logo--full");
+    @FindBy(id = "onetrust-accept-btn-handler")
+    private WebElement acceptButton;
 
-    public void goToHomepage() {
-        iWebUIElements.openBrowser(appProperties.getUrl());
-        iWebUIElements.maximizeBrowser();
-    }
+    @FindBy(className = "site-branding__logo--full")
+    private WebElement homeLogo;
+
+    @FindBy(xpath = "//a[text()='Who we are']")
+    private WebElement aboutUs;
 
     public void clickOnAccept() {
-        loadElement(acceptBtn);
-        iWebUIElements.click(acceptBtn);
+        webUIElements.loadWebElement(acceptButton);
+        screenshotUtil.takeScreenshotByAllure(applicationContext.getBean(WebDriver.class), "pop-up dialog");
+        webUIElements.click(acceptButton);
     }
 
+    public void moveToAboutUs() {
+        webUIElements.moveToElement(aboutUs);
+    }
+
+    @Step("check home page")
     public void checkHomeLogo() {
-        if (iWebUIElements.checkWebElementDisplay(homeLogo)) {
-            iWebUIElements.highlightElement(homeLogo);
-            System.out.println("the homepage is loaded.");
+        if (webUIElements.checkWebElementDisplay(homeLogo)) {
+            webUIElements.highlightElement(homeLogo);
+            log.info("the homepage is loaded...");
         }
-        else System.out.println("the homepage load failed.");
+        else log.error("the homepage load failed...");
     }
-
 }
 
 

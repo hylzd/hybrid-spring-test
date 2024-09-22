@@ -1,26 +1,32 @@
 package com.common.framework.tests;
 
+import com.common.framework.listeners.ExtentReportListener;
 import com.common.framework.pages.WelcomePage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 @SpringBootTest
+@Listeners(ExtentReportListener.class)
 public class AboutSummaryTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private WelcomePage welcomePage;
 
-    @Test(priority = 1)
-    public void goToWelcomeHome() {
-        welcomePage.goToHomepage();
-    }
-
-    @Test(priority = 2)
+    @Test
     public void goToAboutUs() throws Exception {
+        welcomePage.openURL();
         welcomePage.clickOnAccept();
         welcomePage.checkHomeLogo();
-        welcomePage.iWebUIElements.navigateTo("About us");
+        welcomePage.webUIElements.navigateTo("About us");
+    }
+
+    @AfterTest
+    public void tearDown() {
+        welcomePage.tearDown();
     }
 }

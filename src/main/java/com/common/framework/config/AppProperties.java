@@ -12,8 +12,8 @@ import java.time.Duration;
 public class AppProperties {
 
     private int timeout;
-    private Duration implicitTime;
-    private Duration explicitTime;
+    private int implicitTime;
+    private int explicitTime;
 
     private String appType;
     private String url;
