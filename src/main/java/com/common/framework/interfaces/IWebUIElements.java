@@ -1,19 +1,22 @@
 package com.common.framework.interfaces;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public interface IWebUIElements {
 
     void openBrowser(String url);
 
-    void maximizeBrowser();
-
     void navigateTo(String text);
 
-    void highlightElement(By by);
+    void highlightElement(WebElement webElement);
 
-    void click (By by);
+    void click (WebElement webElement);
 
-    boolean checkWebElementDisplay(By by);
+    boolean checkWebElementDisplay(WebElement webElement);
+
+    void loadWebElement(WebElement webElement);
+
+    void moveToElement(WebElement webElement);
 
 }
