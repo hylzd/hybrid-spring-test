@@ -31,6 +31,11 @@ public class WebUIElements extends AppBaseActions implements IWebUIElements {
     }
 
     @Override
+    public void inputText(WebElement webElement, String string) {
+        webElement.sendKeys(string);
+    }
+
+    @Override
     public void click(WebElement webElement) {
         webElement.click();
     }
@@ -73,7 +78,7 @@ public class WebUIElements extends AppBaseActions implements IWebUIElements {
 
     @Override
     public void moveToElement(WebElement webElement) {
-        Actions actions = new Actions(webDriver);
+        Actions actions = new Actions(applicationContext.getBean(WebDriver.class));
         actions.moveToElement(webElement).perform();
     }
 }

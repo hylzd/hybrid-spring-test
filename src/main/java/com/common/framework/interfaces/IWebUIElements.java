@@ -11,6 +11,8 @@ public interface IWebUIElements {
 
     void highlightElement(WebElement webElement);
 
+    void inputText(WebElement webElement, String string);
+
     void click (WebElement webElement);
 
     boolean checkWebElementDisplay(WebElement webElement);

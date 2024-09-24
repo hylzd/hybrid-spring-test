@@ -12,6 +12,10 @@ public class BaseWebPage extends AppBasePage {
         webUIElements.openBrowser(appProperties.getUrl());
     }
 
+    public void openURL(String url) {
+        webUIElements.openBrowser(url);
+    }
+
     public void tearDown() {
         webDriver.quit();
     }

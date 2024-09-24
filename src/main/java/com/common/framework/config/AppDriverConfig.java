@@ -38,7 +38,7 @@ public class AppDriverConfig {
     }
 
     public EdgeOptions getEdgeOptions() {
-        var edgeOptions = new EdgeOptions();
+        EdgeOptions edgeOptions = new EdgeOptions();
         edgeOptions.addArguments("--start-maximized");
         return edgeOptions;
     }

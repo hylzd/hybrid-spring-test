@@ -8,3 +8,4 @@ target/*
 *.ipr
 src/test/resources/apps/*
 logs/*ech
+src/test/java/com/common/framework/tests/SampleTest.java

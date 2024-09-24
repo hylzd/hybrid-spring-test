@@ -3,7 +3,7 @@
 <suite name="Suite" >
     <test name="example" >
         <classes>
-            <class name="com.common.framework.tests.AboutSummaryTest" />
+            <class name="com.common.framework.tests.SampleTest" />
         </classes>
     </test>
 </suite>
