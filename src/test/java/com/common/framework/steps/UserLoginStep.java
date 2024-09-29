@@ -4,7 +4,6 @@ import com.common.framework.pages.SauceLoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserLoginStep {
@@ -25,9 +24,7 @@ public class UserLoginStep {
 
     @Then("navigate to welcome page")
     public void navigate_to_welcome_page() {
-        sauceLoginPage.screenshotUtil.takeScreenshotByAllure(
-                sauceLoginPage.applicationContext.getBean(WebDriver.class), "welcome home");
+        //tbd...
     }
-
 
 }

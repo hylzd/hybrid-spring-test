@@ -4,7 +4,6 @@ import com.common.framework.pages.WelcomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class AboutSummaryStep {
@@ -25,8 +24,7 @@ public class AboutSummaryStep {
     }
     @Then("the summary details should be shown")
     public void the_summary_details_should_be_shown() {
-        welcomePage.screenshotUtil.takeScreenshotByAllure(
-                welcomePage.applicationContext.getBean(WebDriver.class), "summary list of About Us");
+        //tbd...
     }
 
 }

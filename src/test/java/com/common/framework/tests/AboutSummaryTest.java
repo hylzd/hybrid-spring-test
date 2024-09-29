@@ -18,7 +18,7 @@ public class AboutSummaryTest extends AbstractTestNGSpringContextTests {
     private WelcomePage welcomePage;
 
     @Test
-    public void goToAboutUs() throws Exception {
+    public void goToAboutUs() {
         welcomePage.openURL();
         welcomePage.clickOnAccept();
         welcomePage.checkHomeLogo();
@@ -27,7 +27,9 @@ public class AboutSummaryTest extends AbstractTestNGSpringContextTests {
     }
 
     @AfterTest
-    public void tearDown() {
+    public void quit() {
         welcomePage.tearDown();
     }
+
+
 }

@@ -21,14 +21,13 @@ public class WelcomePage extends BaseWebPage {
     @FindBy(xpath = "//a[text()='Who we are']")
     private WebElement aboutUs;
 
+    @FindBy(xpath = "//a[text()='Our purpose']")
+    private WebElement purpose;
+
     public void clickOnAccept() {
         webUIElements.loadWebElement(acceptButton);
         screenshotUtil.takeScreenshotByAllure(applicationContext.getBean(WebDriver.class), "pop-up dialog");
         webUIElements.click(acceptButton);
-    }
-
-    public void moveToAboutUs() {
-        webUIElements.moveToElement(aboutUs);
     }
 
     @Step("check home page")
@@ -39,6 +38,12 @@ public class WelcomePage extends BaseWebPage {
         }
         else log.error("the homepage load failed...");
     }
+
+    @Step("expand about us")
+    public void moveToAboutUs() {
+        webUIElements.moveToElement(aboutUs);
+    }
+
 }
 
 

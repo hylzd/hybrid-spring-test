@@ -22,8 +22,4 @@ public class SearchTextTest extends AbstractTestNGSpringContextTests {
         toutiaoFirstPage.doSearch();
     }
 
-    @AfterTest
-    public void tearDown() {
-        toutiaoFirstPage.tearDown();
-    }
 }
